@@ -14,6 +14,11 @@ const onlineCountSpan = document.querySelector('#onlineCount');
 const genderSelect = document.querySelector('#gender');
 const encryptionIcon = document.querySelector('#encryptionIcon');
 
+// Responsive Elements
+const sidebar = document.querySelector('#sidebar');
+const chatMain = document.querySelector('#chatMain');
+const backBtn = document.querySelector('#backBtn');
+
 var stompClient = null;
 var username = null;
 var selectedGender = null;
@@ -22,7 +27,8 @@ var selectedUser = null;
 var chatHistory = { 'public': [] };
 var onlineUsers = {};
 
-// Generates a symmetric key by combining the usernames.
+// --- 0. VINTAGE CIPHER FUNCTIONS ---
+
 function getSharedKey(userA, userB) {
     return [userA, userB].sort().join('');
 }
@@ -137,7 +143,7 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             type: 'CHAT',
-            timestamp: getFormattedTime() // Add timestamp here
+            timestamp: getFormattedTime()
         };
 
         if (selectedUser) {
@@ -269,6 +275,16 @@ function selectUser(user) {
     const key = user || 'public';
     const messages = chatHistory[key] || [];
     messages.forEach(displayMessage);
+
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('hidden-mobile');
+        chatMain.classList.remove('hidden-mobile');
+    }
+}
+
+function goBackToUserList() {
+    sidebar.classList.remove('hidden-mobile');
+    chatMain.classList.add('hidden-mobile');
 }
 
 function displayMessage(message) {
@@ -276,7 +292,7 @@ function displayMessage(message) {
 
     if (message.type === 'JOIN') {
         messageLi.classList.add('event-message');
-        messageLi.textContent = message.sender + ' joined the secure line.';
+        messageLi.textContent = message.sender + ' joined.';
     } else if (message.type === 'LEAVE') {
         messageLi.classList.add('event-message');
         messageLi.textContent = message.sender + ' disconnected.';
@@ -342,3 +358,4 @@ function notifyUser(user) {
 usernameForm.addEventListener('submit', connect, true);
 messageForm.addEventListener('submit', sendMessage, true);
 userSearchInput.addEventListener('input', renderUserList);
+backBtn.addEventListener('click', goBackToUserList);

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage Secure Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+    <title>Go Chat</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -45,10 +45,9 @@
 <div id="chat-page" class="hidden">
     <div class="chat-layout">
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <aside id="sidebar" class="sidebar">
             <div class="sidebar-header">
-                <h3>Go Chat</h3>
+                <h3>Directory</h3>
                 <span id="onlineCount" class="online-badge">0 Online</span>
             </div>
             <div class="search-box">
@@ -58,12 +57,16 @@
         </aside>
 
         <!-- MAIN CHAT -->
-        <main class="chat-main">
+        <main id="chatMain" class="chat-main hidden-mobile">
             <div class="chat-header">
                 <div class="header-info">
-                    <h2 id="chatTitle">Public Lounge</h2>
-                    <!-- Lock Icon -->
-                    <span id="encryptionIcon" class="hidden" title="Columnar Transposition Cipher">🔒</span>
+                    <!-- Mobile Back Button -->
+                    <button id="backBtn" class="back-btn hidden-desktop" title="Back to Directory">←</button>
+                    <div class="title-container">
+                        <h2 id="chatTitle">Public Lounge</h2>
+                        <!-- Lock Icon -->
+                        <span id="encryptionIcon" class="hidden" title="Columnar Transposition Cipher">🔒</span>
+                    </div>
                 </div>
                 <span id="connectionStatus" class="status connected">Online</span>
             </div>
