@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Secure Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="login-page" class="page-container">
+    <div class="login-card">
+        <div class="vintage-header">
+            <h1>Go Chat</h1>
+        </div>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Identify Yourself</label>
+                <input type="text" id="username" placeholder="Enter unique alias..." autocomplete="off" required>
+            </div>
+
+            <!-- GENDER SELECTION -->
+            <div class="input-group">
+                <label for="gender">Select Gender</label>
+                <select id="gender" class="vintage-select">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                    <option value="OTHER">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="vintage-btn">Connect</button>
+        </form>
+        <div id="login-error" class="error-text hidden"></div>
+    </div>
+    <div class="developer-info">
+        © 2025 All Rights Reserved | Developed by Sai Vardhan |
+        <a href="https://github.com/SAIVARDHAN15" target="_blank">GitHub</a>
+    </div>
+</div>
+
+<!-- CHAT PAGE -->
+<div id="chat-page" class="hidden">
+    <div class="chat-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Go Chat</h3>
+                <span id="onlineCount" class="online-badge">0 Online</span>
+            </div>
+            <div class="search-box">
+                <input type="text" id="userSearch" placeholder="Search directory...">
+            </div>
+            <ul id="usersList" class="users-list"></ul>
+        </aside>
+
+        <!-- MAIN CHAT -->
+        <main class="chat-main">
+            <div class="chat-header">
+                <div class="header-info">
+                    <h2 id="chatTitle">Public Lounge</h2>
+                    <!-- Lock Icon -->
+                    <span id="encryptionIcon" class="hidden" title="Columnar Transposition Cipher">🔒</span>
+                </div>
+                <span id="connectionStatus" class="status connected">Online</span>
+            </div>
+
+            <ul id="messageArea" class="message-area"></ul>
+
+            <form id="messageForm" class="message-input-area">
+                <input
+                        type="text"
+                        id="message"
+                        placeholder="Type your correspondence..."
+                        autocomplete="off"
+                >
+                <button type="submit" class="vintage-btn small">Send</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
